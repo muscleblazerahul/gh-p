@@ -1,10 +1,44 @@
-<!doctype html>
 <html>
-  <head>
-    <title>This is the title of the webpage!</title>
-  </head>
-  <body>
-    <p>This is an example paragraph. Anything in the <strong>body</strong> tag will appear on the page, just like this <strong>p</strong> tag and its contents.</p>
-    <a href="https://pdfhost.io/v/BXZRFb99T_1st_sem_end_exampdf.pdf">open pdf</a>
-  </body>
+    <head>
+        <title>title of the page</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    </head>
+    <body>
+        <div class="container">
+            <div class="table-responsive">
+                <h1>heading</h1>
+                <br />
+                <table class="table table-bordered table-striped" id="employee_table">
+                    <tr>
+                        <th>User Id</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </body>
 </html>
+
+<script>
+    $(document).ready(function(){
+        $.getJSON("https://script.googleusercontent.com/macros/echo?user_content_key=2JLncwVHY9wbFcv1Yr4tzdnKdJPhjkwdgkTQ6H-0saCxHcO56rwmEdEweUDcBHpyqk9LgmL3TfbV8eXARucjWf76J5LpeQnim5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnDrE13DIN5bDPDWhn3njEJsy4rObM9ivQY85ytloB4BMyMeEjkZOU85ap7IC4_CYTdFTBULFYn7TvJsw0wqpxiI&lib=MsmznvUTDA5lVEATZ1hVIx9P6dG-8FV_X", function(data){
+            data = data.data;
+            var employee_data = '';
+            $.each(data, function(key,value){
+                employee_data += '<tr>';
+                employee_data += '<td>'+value.user+ '</td>';
+                employee_data += '<td>'+value.first+ '</td>';
+                employee_data += '<td>'+value.last+ '</td>';
+                employee_data += '<td>'+value.email+ '</td>';
+                employee_data += '</tr>';
+
+            });
+            $('#employee_table').append(employee_data);
+        });
+    });
+</script>
